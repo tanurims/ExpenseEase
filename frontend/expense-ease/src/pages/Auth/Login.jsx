@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import Input from '../../components/inputs/input'
 import { Link } from 'react-router-dom'
 import { validateEmail } from '../../utils/helper'
+import axiosInstance from '../../utils/axiosInstance'
+import { API_PATH } from '../../utils/apiPath'
 
 
 const Login = () => {
@@ -32,7 +34,28 @@ const Login = () => {
     setError("");
 
     //login API call
-    
+    try {
+
+      const response = await axiosInstance.post(API_PATH.AUTH.LOGIN, {
+        email,
+        password,
+      });
+
+      const {token,user} = response.data;
+
+      if(token) {
+        localStorage.setItem("token",token);
+        navigate("/dashboard")
+      }
+      
+    } catch (error) {
+      if(error.response && error.response.data.message) {
+        setError(error.response.data.message)
+      } else{
+        setError("Something went wrong. please try again");
+      }
+      
+    }
 
 
     
