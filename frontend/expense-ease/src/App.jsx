@@ -12,6 +12,7 @@ import SignUp from "./pages/Auth/SignUp";
 import Home from "./pages/Dashboard/Home";
 import Expense from "./pages/Dashboard/Expense";
 import Income from "./pages/Dashboard/Income";
+import UserProvider from './context/userContext';
 
 const Root = ()=>{
   //check if token is present in local storage
@@ -29,19 +30,21 @@ const Root = ()=>{
 
 const App = () => {
   return (
-    <div>
-      
-      <Router>
-        <Routes>
-          <Route path="/" element={<Root/>} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signUp" element={<SignUp/>} />
-          <Route path="/dashboard" element={<Home />} />
-          <Route path="/expense" element={<Expense />} />
-          <Route path="/income" element={<Income />} />
-        </Routes>
-      </Router>
-    </div>
+    <UserProvider>
+      <div>
+        
+        <Router>
+          <Routes>
+            <Route path="/" element={<Root/>} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signUp" element={<SignUp/>} />
+            <Route path="/dashboard" element={<Home />} />
+            <Route path="/expense" element={<Expense />} />
+            <Route path="/income" element={<Income />} />
+          </Routes>
+        </Router>
+      </div>
+    </UserProvider>
   )
 }
 
