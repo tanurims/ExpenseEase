@@ -7,6 +7,7 @@ const app = express();
 const  authRoutes = require('./routes/authRoutes');
 const incomeRoutes = require('./routes/incomeRoutes');
 const expenseRoutes = require('./routes/expenseRoutes');
+const dashboarRoutes = require('./routes/dashboardRoutes');
 
 //middleware to handle cors
 app.use(cors({
@@ -22,6 +23,8 @@ connectDB();
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/income", incomeRoutes);
 app.use("/api/v1/expense", expenseRoutes);
+app.use("/api/v1/dashboard", dashboarRoutes);
+
 
 
 
