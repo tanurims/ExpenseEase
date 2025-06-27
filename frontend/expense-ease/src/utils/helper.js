@@ -1,3 +1,5 @@
+import { Category } from "@mui/icons-material";
+
 export const validateEmail = (email) => {
 
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -27,3 +29,12 @@ export const addThousandsSeparator = (num) => {
     ? `${formattedInteger}.${fractionalPart}`
     : formattedInteger;
 };
+
+export const prepareExpenseBarChartData = (data = []) => {
+    const charData = data.map((item)=>({
+        category: item?.category,
+        amount: item?.amount,
+    }))
+
+    return charData;
+}
