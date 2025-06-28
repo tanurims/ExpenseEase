@@ -9,6 +9,8 @@ import DeleteAlert from '../../components/DeleteAlert';
 import toast, { Toaster } from 'react-hot-toast'
 import { useEffect } from 'react';
 import ExpenseOverview from '../../components/ExpenseOverview';
+import AddExpenseForm from '../../components/Expense/AddExpenseForm';
+import ExpenseList from '../../components/Expense/ExpenseList';
 
 const Expense = () => {
 
@@ -96,6 +98,9 @@ const Expense = () => {
     };
   };
 
+  //handle download expense details
+  const handleDownloadExpenseDetails = async () => {};
+
   useEffect(()=>{
       fetchExpenseData();
   
@@ -113,7 +118,35 @@ const Expense = () => {
             onExpenseIncome={()=>setOpenAddExpenseModal(true)}
             />
           </div>
+
+          <ExpenseList
+          transactions={expenseData}
+          onDelete={(id)=>{
+            setOpenDeleteAlert({show: true, data: id});
+          }}
+          onDownload={handleDownloadExpenseDetails}
+          />
         </div>
+
+        <Modal
+          isOpen={openAddExpenseModal}
+          onClose={() => setOpenAddExpenseModal(false)}
+          title="Add Expense">
+
+            <AddExpenseForm onAddExpense={handleAddExpense}/>
+
+        </Modal>
+
+        <Modal
+        isOpen={openDeleteAlert.show}
+        onClose={() => setOpenDeleteAlert({show: false, data: null})}
+        title="Delete Income"
+        >
+          <DeleteAlert
+          content="Are you sure you want to delete this income"
+          onDelete={()=>deleteExpense(openDeleteAlert.data)}
+          />
+        </Modal>
 
       </div>
     </DashbardLayout>
