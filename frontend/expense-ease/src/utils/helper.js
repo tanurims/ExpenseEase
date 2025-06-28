@@ -1,4 +1,5 @@
 import { Category } from "@mui/icons-material";
+import moment from "moment";
 
 export const validateEmail = (email) => {
 
@@ -34,7 +35,22 @@ export const prepareExpenseBarChartData = (data = []) => {
     const charData = data.map((item)=>({
         category: item?.category,
         amount: item?.amount,
+        month: moment(item?.date).format('Do MMM'),
     }))
 
     return charData;
 }
+
+export const prepareIncomeChartData = (data = []) => {
+    const sortedData = [...data].sort((a,b)=>new Date(b.date) - new Date(a.date));
+
+    const chartData = sortedData.map((item)=>({
+        month: moment(item?.date).format('Do MMM'),
+        amount: item?.amount,
+        category: item?.source,
+    }));
+
+    return chartData;
+};
+    
+    
