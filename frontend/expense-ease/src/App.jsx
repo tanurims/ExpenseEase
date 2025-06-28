@@ -13,6 +13,8 @@ import Home from "./pages/Dashboard/Home";
 import Expense from "./pages/Dashboard/Expense";
 import Income from "./pages/Dashboard/Income";
 import UserProvider from './context/userContext';
+import {Toaster} from 'react-hot-toast';
+
 
 const Root = ()=>{
   //check if token is present in local storage
@@ -44,6 +46,15 @@ const App = () => {
           </Routes>
         </Router>
       </div>
+
+      <Toaster
+      toastOptions={{
+        className: "",
+        style: {
+          fontSize:'13px'
+        },
+      }}
+      />
     </UserProvider>
   )
 }

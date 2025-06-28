@@ -4,6 +4,7 @@ import IncomeOverview from '../../components/Income/IncomeOverview'
 import axiosInstance from '../../utils/axiosInstance'
 import { API_PATH } from '../../utils/apiPath';
 import Modal from '../../components/Modal';
+import AddIncomeForm from '../../components/Income/AddIncomeForm';
 
 
 const Income = () => {
@@ -40,7 +41,40 @@ const Income = () => {
   };
 
   //handle add income
-  const handleAddIncome = async (income) => {};
+  const handleAddIncome = async (income) => {
+    const {source, amount, date, icon} = income;
+
+    //validation
+    if(!source.trim()){
+      toast.error("Income source is required");
+      return;
+    }
+
+    if(!amount || isNaN(amount) || Number(amount)<=0){
+      toast.error("Amount should be valid number greater than 0");
+      return;
+    }
+
+    if(!date){
+      toast.error("Date is required");
+      return;
+    }
+
+    try{
+      await axiosInstance.post(API_PATH.INCOME.ADD_INCOME, {
+        source,
+        amount,
+        date,
+        icon
+      });
+
+      setOpenAddIncomeModal(false);
+      toast.success("Income added successfully");
+      fetchIncomeData();
+    }catch(error){
+      console.error("Error adding income:",error.response?.data?.message || ErrorEvent.message);
+    }
+  };
 
   //delete income
   const deleteIncome = async (id) => {};
@@ -73,7 +107,7 @@ const Income = () => {
         onClose={() => setOpenAddIncomeModal(false)}
         title="Add Income">
 
-          <div>Add Income Form</div>
+          <AddIncomeForm onAddIncome={handleAddIncome}/>
 
         </Modal>
       
