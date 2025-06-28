@@ -9,6 +9,7 @@ import axiosInstance from '../../utils/axiosInstance'
 import { API_PATH } from '../../utils/apiPath'
 import { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
+import toast from 'react-hot-toast'
 
 
 const Login = () => {
@@ -50,6 +51,7 @@ const Login = () => {
       if(token) {
         localStorage.setItem("token",token);
         updateUser(user);
+        toast.success("Login successful");
         navigate("/dashboard")
       }
       
@@ -59,6 +61,8 @@ const Login = () => {
       } else{
         setError("Something went wrong. please try again");
       }
+
+      toast.error("Login failed");
       
     }
 
