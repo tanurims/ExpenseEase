@@ -70,6 +70,7 @@ const SignUp = () => {
       if(token){
         localStorage.setItem("token",token);
         updateUser(user);
+        toast.success("Signup successful");
         navigate("/dashboard")
       }
       
@@ -79,6 +80,8 @@ const SignUp = () => {
       } else{
         setError("Something went wrong. please try again");
       }
+
+      
       
     }
 
