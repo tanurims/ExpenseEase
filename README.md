@@ -24,7 +24,6 @@ This is a **learning project** I completed by following a YouTube tutorial to un
 - **Database**: MongoDB Atlas
 - **Authentication**: JWT (JSON Web Token)
 - **Chart Library**: Recharts
-- **File Export**: xlsx (for Excel downloads)
 
   ---
 
