@@ -18,11 +18,42 @@ This is a **learning project** I completed by following a YouTube tutorial to un
 
 ---
 
-## 🚀 Technologies Used
-
+## 🚀 Tech Stack
 - **Frontend**: React.js + Tailwind CSS
 - **Backend**: Node.js + Express.js
 - **Database**: MongoDB Atlas
 - **Authentication**: JWT (JSON Web Token)
 - **Chart Library**: Recharts
 - **File Export**: xlsx (for Excel downloads)
+
+  ---
+
+## ⚙️ How to Run This Project
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/tanurims/expenseease.git
+   cd expenseease
+   cd backend
+   npm install
+   ```
+
+2. **Add .env File in Backend Folder**
+```bash
+   PORT=8000
+   MONGODB_URI=your_mongo_db_uri
+   JWT_SECRET=your_jwt_secret
+   ```
+3. **Start the Backend**
+```bash
+   npm run dev
+```
+
+4. **Install Frontend Dependencies and Run**
+   ```bash
+   cd ../frontend/expense-ease
+   npm install
+   npm run dev
+   ```
+
+
